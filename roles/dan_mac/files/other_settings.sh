@@ -9,3 +9,10 @@ sudo chmod go+x /usr/local/bin/aws-azure-login
 git config --global user.name "Dan Murarasu"
 git config --global user.email "dan.murarasu@gmail.com"
 git config --global credential.helper=osxkeychain
+
+### git secrets
+#Add a configuration template if you want to add hooks to all repositories you initialize or clone in the future.
+git secrets --register-aws --global
+#Add hooks to all your local repositories
+git secrets --install ~/.git-templates/git-secrets
+git config --global init.templateDir ~/.git-templates/git-secrets

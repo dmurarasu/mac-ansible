@@ -1,4 +1,6 @@
-homebrew_taps: []
+homebrew_taps:
+- jtyr/repo
+- homebrew/cask-fonts
 
 homebrew_package_removals: []
 
@@ -19,8 +21,9 @@ homebrew_packages:
 #- fswatch
 #- gdbm
 - git
-- git-secret
+- git-secrets
 - gpg
+- gbt-git
 #- graphicsmagick
 #- hub
 #- imagemagick
@@ -82,8 +85,9 @@ homebrew_cask_packages:
 - docker
 #- evernote
 - firefox
-#- font-roboto-mono
-#- font-ubuntumono-nerd-font
+- font-hack-nerd-font-mono
+- font-roboto-mono
+- font-ubuntumono-nerd-font
 #- franz
 #- google-chrome
 #- inkscape
