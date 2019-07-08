@@ -12,8 +12,9 @@ alias su='gbt_su'
 alias sudo='gbt_sudo'
 alias vagrant='gbt_vagrant'
 
+for f in /usr/local/etc/bash_completion.d/*; do source $f; done
+export BASH_COMPLETION_COMPAT_DIR="/usr/local/etc/bash_completion.d"
 [[ -r "/usr/local/etc/profile.d/bash_completion.sh" ]] && . "/usr/local/etc/profile.d/bash_completion.sh"
-
 
 _complete_ssh_hosts ()
 {
