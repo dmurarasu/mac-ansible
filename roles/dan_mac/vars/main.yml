@@ -93,14 +93,16 @@ homebrew_cask_packages:
 - font-roboto-mono
 - font-ubuntumono-nerd-font
 #- franz
-#- google-chrome
+- google-chrome
 #- inkscape
+- inssider
 #- iterm2
 #- java
 #- karabiner-elements
 #- keyboard-maestro
 #- mactex
 - homebrew/cask-versions/microsoft-remote-desktop-beta
+- microsoft-teams
 #- mplayerx
 #- paintbrush
 #- playonmac
@@ -111,6 +113,7 @@ homebrew_cask_packages:
 #- skype
 #- soundcleod
 #- soundflower
+- slack
 #- steam
 #- sublime-text
 #- texmaker
@@ -118,6 +121,7 @@ homebrew_cask_packages:
 - vagrant
 - virtualbox
 #- vlc
+- webex-meetings
 - wireshark
 #- xquartz
 
