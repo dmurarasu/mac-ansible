@@ -10,6 +10,11 @@ git config --global user.name "Dan Murarasu"
 git config --global user.email "dan.murarasu@gmail.com"
 git config --global credential.helper=osxkeychain
 
+### cleaner history and better diff
+git config --global pull.rebase true
+git config --global fetch.prune true
+git config --global diff.colorMoved zebra
+
 ### git secrets
 #Add a configuration template if you want to add hooks to all repositories you initialize or clone in the future.
 git secrets --register-aws --global
