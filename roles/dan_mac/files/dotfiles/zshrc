@@ -1,0 +1,68 @@
+### [ ZSH ]
+
+# History
+HISTFILE=~/.zsh_history
+HISTSIZE=10000
+SAVEHIST=10000
+setopt append_history
+setopt extended_history
+setopt hist_expire_dups_first
+setopt HIST_FIND_NO_DUPS
+setopt hist_ignore_dups
+setopt hist_ignore_space
+setopt hist_verify
+setopt inc_append_history
+setopt share_history
+
+
+export GBT_CARS="Status, Os, Hostname, Dir, Git, Sign"
+export GBT__SOURCE_MD5_LOCAL='md5'
+export GBT__SOURCE_MD5_CUT_LOCAL='4'
+export GBT__HOME='/usr/local/share/gbt-git'
+export GOPATH='/usr/local/go'
+source "$GBT__HOME/sources/gbts/cmd/local.sh"
+alias docker='gbt_docker'
+alias mysql='gbt_mysql'
+alias screen='gbt_screen'
+alias ssh='gbt_ssh'
+alias su='gbt_su'
+alias sudo='gbt_sudo'
+alias vagrant='gbt_vagrant'
+
+# Prompt
+autoload -U promptinit
+promptinit
+setopt PROMPT_SUBST
+
+# GBT prompt
+PROMPT='$(gbt $?)'
+
+
+# Auto-completion
+autoload -U compinit
+compinit
+zstyle ':completion:*' matcher-list 'm:{a-zA-Z}={A-Za-z}' 'r:|=*' 'l:|=* r:|=*'
+zstyle ':completion:*' menu select
+
+autoload -U bashcompinit
+bashcompinit
+
+# Aliases
+alias grep='/usr/bin/grep --color=auto'
+alias ll='ls -G -l'
+alias ls='ls -G'
+
+# Midnight Commander chdir enhancement
+if [ -f /usr/lib/mc/mc.sh ]; then
+    source /usr/lib/mc/mc.sh
+fi
+
+##### BINDINGS
+# binding makes it so that you can search your history with Ctrl-R.
+bindkey "^R" history-incremental-search-backward
+# these two make the up and down arrows cycle through commands that match the start of a line
+bindkey "^[[A" up-line-or-search
+bindkey "^[[B" down-line-or-search
+
+complete -C /usr/local/bin/terraform terraform
+

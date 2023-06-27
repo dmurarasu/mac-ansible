@@ -1,0 +1,128 @@
+[advice]
+    # https://adamj.eu/tech/2022/11/08/git-disable-status-advice/
+    statusHints = false
+
+[branch]
+    sort = -committerdate
+
+[core]
+    pager = delta
+
+    ; Don't trust file modes
+    filemode = false
+
+[color "branch"]
+    current = yellow reverse
+    local = yellow
+    remote = green
+
+[color "diff"]
+    frag = magenta bold
+    meta = yellow bold
+    new = green bold
+    old = red bold
+    whitespace = red reverse
+
+[color "status"]
+    added = yellow
+    changed = green
+    untracked = cyan
+
+[commit]
+    cleanup = scissors
+    verbose = true
+
+[credential]
+    helper = cache --timeout=3600
+
+[delta]
+    # https://dandavison.github.io/delta/configuration.html
+    hyperlinks = true
+    line-numbers = true
+    navigate = true
+    syntax-theme = Monokai Extended
+
+[diff]
+    algorithm = histogram
+	colorMoved = zebra
+    noprefix = true
+    interHunkContext = 3
+
+[diff "exiftool"]
+    textconv = exiftool --composite -x 'Exiftool:*' -x 'File:*' -g0
+    cachetextconv = true
+    xfuncname = "^-.*$"
+
+[diff "pandoc-to-markdown"]
+    textconv = pandoc -t markdown
+
+[feature]
+    manyFiles = 1
+
+[fetch]
+	prune = true
+
+[help]
+    # https://adamj.eu/tech/2022/10/26/git-how-to-enable-autocorrect/
+    autocorrect = immediate
+
+    format = web
+
+[init]
+    defaultBranch = main
+	templateDir = /Users/murarasd/.git-templates/git-secrets
+
+[interactive]
+    singleKey = true
+    diffFilter = delta --color-only
+
+[log]
+    follow = true
+
+[merge]
+    conflictStyle = zdiff3
+    # https://adamj.eu/tech/2022/11/05/git-automatically-stash-rebase-merge/
+    autoStash = true
+    tool = sublime
+
+[mergetool]
+    keepBackup = false
+
+[mergetool "sublime"]
+    cmd = subl -w $MERGED
+
+[pager]
+    status = true
+
+[pull]
+	rebase = true
+
+[push]
+    # https://adamj.eu/tech/2022/10/31/git-how-to-automatically-create-upstream-branches/
+    autoSetupRemote = true
+
+[rebase]
+    abbreviateCommands = true
+
+    # https://adamj.eu/tech/2022/11/05/git-automatically-stash-rebase-merge/
+    autoStash = true
+
+    rescheduleFailedExec = true
+
+    # https://adamj.eu/tech/2022/10/15/how-to-rebase-stacked-git-branches/
+    updateRefs = true
+
+[rerere]
+    enabled = true
+
+[user]
+	name = Dan Murarasu
+	email = dan.murarasu@gmail.com
+
+[secrets]
+	providers = git secrets --aws-provider
+	patterns = (A3T[A-Z0-9]|AKIA|AGPA|AIDA|AROA|AIPA|ANPA|ANVA|ASIA)[A-Z0-9]{16}
+	patterns = (\"|')?(AWS|aws|Aws)?_?(SECRET|secret|Secret)?_?(ACCESS|access|Access)?_?(KEY|key|Key)(\"|')?\\s*(:|=>|=)\\s*(\"|')?[A-Za-z0-9/\\+=]{40}(\"|')?
+	patterns = (\"|')?(AWS|aws|Aws)?_?(ACCOUNT|account|Account)_?(ID|id|Id)?(\"|')?\\s*(:|=>|=)\\s*(\"|')?[0-9]{4}\\-?[0-9]{4}\\-?[0-9]{4}(\"|')?
+	allowed = AKIAIOSFODNN7EXAMPLE
+	allowed = wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY

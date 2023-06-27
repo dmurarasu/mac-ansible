@@ -4,10 +4,14 @@ homebrew_taps:
 
 homebrew_package_removals: []
 
+homebrew_packages_head:
+- gbt-git
+
 homebrew_packages:
 #- autoconf
 #- autojump
 #- automake
+- awscli
 - azure-cli
 #- bazaar
 - bash-completion@2
@@ -23,7 +27,6 @@ homebrew_packages:
 - git
 - git-secrets
 - gpg
-- gbt-git
 #- graphicsmagick
 #- hub
 #- imagemagick
@@ -67,7 +70,7 @@ homebrew_packages:
 #- swig
 - telnet
 - terraform
-- tfswitch
+- warrensbox/tap/tfswitch
 #- tor
 - tree
 - watch
@@ -76,9 +79,11 @@ homebrew_packages:
 #- yubikey-personalization
 #- zlib
 - zsh-completions
+- zsh-autosuggestions
+- zsh-history-substring-search
+- zsh-syntax-highlighting
 
 homebrew_cask_packages:
-- atom
 #- alfred
 #- anki
 #- arq
@@ -86,12 +91,12 @@ homebrew_cask_packages:
 #- calibre
 #- dash
 #- disk-inventory-x
-- docker
+- homebrew/cask/docker
 #- evernote
 - firefox
-- font-hack-nerd-font-mono
+- font-hack-nerd-font
 - font-roboto-mono
-- font-ubuntumono-nerd-font
+- font-ubuntu-mono-nerd-font
 #- franz
 - google-chrome
 #- inkscape
@@ -101,7 +106,7 @@ homebrew_cask_packages:
 #- karabiner-elements
 #- keyboard-maestro
 #- mactex
-- homebrew/cask-versions/microsoft-remote-desktop-beta
+- homebrew/cask/microsoft-remote-desktop
 - microsoft-teams
 #- mplayerx
 #- paintbrush
@@ -115,25 +120,24 @@ homebrew_cask_packages:
 #- soundflower
 - slack
 #- steam
-#- sublime-text
+- sublime-text
 #- texmaker
 #- unshaky
 - vagrant
 - virtualbox
 #- vlc
 - webex-meetings
-- wireshark
+- homebrew/cask/wireshark
 #- xquartz
 
 pyenv_python_versions:
 # In precedence order
-- 3.7.3
-#- 3.6.8
-#- 3.5.7
-#- 2.7.16
+- 3.11.4
+- 3.10.12
+- 3.9.17
+- 3.8.17
 
 pip_packages:
-- awscli
 - boto
 - boto3
 #- csvkit
@@ -143,8 +147,6 @@ pip_packages:
 - ipdb
 #- ipython
 #- lifelogger
-- pip-tools
-- pipenv
 #- pygments
 #- pythonpy
 - pyyaml
@@ -152,9 +154,6 @@ pip_packages:
 #- six
 #- tox
 #- twine
-#- virtualenvwrapper
-#- youtube-dl
+- virtualenv
+- wheel
 
-gem_packages:
-#- jekyll
-#- jekyll-tagging

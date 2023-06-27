@@ -12,8 +12,11 @@ Getting Started
 2. `brew install pyenv`
 3. `pyenv install <latest_python_version>` (Check playbook up to date)
 4. Make sure pyenv's python on path (it will be after my shell settings are in place from playbook)
-5. `pip install ansible` (always the best way to install Ansible)
-6. Then `ansible-playbook playbook.yml`
+5. `pyenv local <latest_python_version_you_just_installed>` (might not be needed in later versions but currently next cmd would not work without)
+6. python -m venv venv
+7. source venv/bin/activate
+8. `pip install ansible` (always the best way to install Ansible)
+9. Then `ansible-playbook playbook.yml`
 
 Fork! Copy! Adapt!
 ------------------

@@ -4,15 +4,10 @@
 - name: Install things
   import_tasks: installs.yml
 
-#- name: Link in dotfiles
-#  import_tasks: dotfiles.yml
-#  tags:
-#  - dotfiles
+- name: Link in dotfiles
+  import_tasks: dotfiles.yml
+  tags:
+  - dotfiles
 
-#- name: Copy in/clone app settings
-#  import_tasks: app_settings.yml
-
-#- name: Cron settings
-#  import_tasks: cron.yml
-#  tags:
-#  - cron
+- name: Copy in/clone app settings
+  import_tasks: app_settings.yml

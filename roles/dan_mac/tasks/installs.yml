@@ -12,29 +12,31 @@
   tags:
   - brew
 
-- name: Uninstall old homebrew packages
+- name: Install homebrew packages head
   homebrew:
-    name: '{{ item }}'
-    state: absent
-  with_items: '{{ homebrew_package_removals }}'
+    name: '{{ homebrew_packages_head }}'
+    state: head
   tags:
   - brew
 
 - name: Install homebrew packages
   homebrew:
-    name: '{{ item }}'
+    name: '{{ homebrew_packages }}'
     state: latest
-  loop: '{{ homebrew_packages }}'
   tags:
   - brew
 
 - name: Install homebrew cask packages
-  homebrew_cask:
-    name: '{{ item }}'
-    state: installed
-  loop: '{{ homebrew_cask_packages }}'
+  command: brew install --cask "{{ item }}"
+  loop: "{{ homebrew_cask_packages }}"
+  ignore_errors: True
   tags:
   - brew
+
+- name: Upgrade pyenv
+  shell: brew unlink pyenv && brew install --head --fetch-head pyenv && brew link pyenv --head
+  tags:
+  - pyenv
 
 - name: homebrew cleanup
   command: brew cleanup
@@ -43,34 +45,47 @@
 
 - name: python versions
   command: pyenv install {{ item }}
+  environment:
+    CONFIGURE_OPTS: --enable-optimizations
   register: pyenv_install_result
   failed_when: >
     pyenv_install_result.rc != 0 and
     pyenv_install_result.stderr_lines != ["pyenv: /Users/murarasd/.pyenv/versions/" + item + " already exists"]
   loop: '{{ pyenv_python_versions }}'
   tags:
-  - python
   - pyenv
 
 - name: python versions active
   command: pyenv global {{ pyenv_python_versions|join(" ") }}
   tags:
-  - python
   - pyenv
 
-- name: python versions shims rehashed
-  # Needs running after every update of pyenv, at least, to fix the pyenv shims
+- name: pyenv rehash
   command: pyenv rehash
+  tags:
+  - pyenv
 
-- name: python versions latest pip
+- name: python versions latest build requirements
   pip:
-    name: pip
+    name:
+    - Cython
+    - pip
+    - pip-tools
+    - setuptools
+    - virtualenv
     state: latest
-    executable: '~/.pyenv/versions/{{ item }}/bin/pip'
+    executable: '~/.pyenv/versions/{{ item }}/bin/pip{% if "pypy3" in item %}3{% endif %}'
+  environment:
+    PIP_REQUIRE_VIRTUALENV: "0"
   loop: '{{ pyenv_python_versions }}'
   tags:
-  - python
-  - pip
+  - pyenv
+
+- name: virtualenv update embed wheels
+  command: ~/.pyenv/versions/{{ pyenv_python_versions[0] }}/bin/python -m virtualenv --upgrade-embed-wheels
+  environment:
+    PIP_REQUIRE_VIRTUALENV: "0"
+  tags:
   - pyenv
 
 - name: Install pip packages
@@ -79,13 +94,9 @@
     state: latest
     executable: '~/.pyenv/versions/{{ pyenv_python_versions[0] }}/bin/pip'
   tags:
-  - python
-  - pip
+  - pyenv
 
-- name: Install gem packages
-  gem:
-    name: '{{ item }}'
-    state: latest
-  loop: '{{ gem_packages }}'
+- name: pyenv rehash
+  command: pyenv rehash
   tags:
-  - gem
+  - pyenv
