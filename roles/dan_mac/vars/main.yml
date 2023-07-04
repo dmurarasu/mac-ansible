@@ -125,6 +125,8 @@ homebrew_cask_packages:
 #- unshaky
 - vagrant
 - virtualbox
+- visual-studio
+- visual-studio-code
 #- vlc
 - webex-meetings
 - homebrew/cask/wireshark
