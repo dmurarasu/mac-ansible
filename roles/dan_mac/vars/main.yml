@@ -17,7 +17,7 @@ homebrew_packages:
 - bash-completion@2
 #- cloc
 #- coreutils
-#- cowsay
+- cowsay
 #- exiftool
 #- fdupes
 #- ffmpeg
@@ -27,6 +27,7 @@ homebrew_packages:
 - git
 - git-secrets
 - gpg
+- git-delta
 #- graphicsmagick
 #- hub
 #- imagemagick
